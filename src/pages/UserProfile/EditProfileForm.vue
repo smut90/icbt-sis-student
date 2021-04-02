@@ -8,7 +8,7 @@
                       label="Program"
                       :disabled="true"
                       placeholder="Paper dashboard"
-                      v-model="user.program">
+                      v-model="userData.program">
             </fg-input>
           </div>
           <div class="col-md-6">
@@ -17,7 +17,7 @@
                       label="Center"
                       :disabled="true"
                       placeholder="Center"
-                      v-model="user.center">
+                      v-model="userData.center">
             </fg-input>
           </div>
         </div>
@@ -27,21 +27,21 @@
             <fg-input type="text"
                       label="Title"
                       placeholder="Title"
-                      v-model="user.title">
+                      v-model="userData.title">
             </fg-input>
           </div>
           <div class="col-md-5">
             <fg-input type="text"
                       label="First Name"
                       placeholder="First Name"
-                      v-model="user.first_name">
+                      v-model="userData.first_name">
             </fg-input>
           </div>
           <div class="col-md-5">
             <fg-input type="text"
                       label="Last Name"
                       placeholder="Last Name"
-                      v-model="user.last_name">
+                      v-model="userData.last_name">
             </fg-input>
           </div>
         </div>
@@ -51,7 +51,7 @@
             <fg-input type="text"
                       label="Name to be appeared (on the certificate)"
                       placeholder="Name to be appeared"
-                      v-model="user.certificate_name">
+                      v-model="userData.certificate_name">
             </fg-input>
           </div>
         </div>
@@ -62,21 +62,21 @@
                       label="Date of birth"
                       :disabled="true"
                       placeholder="dob"
-                      v-model="user.dob">
+                      v-model="userData.dob">
             </fg-input>
           </div>
           <div class="col-md-4">
             <fg-input type="text"
                       label="Mobile Number"
                       placeholder="+947########"
-                      v-model="user.mobile_number">
+                      v-model="userData.mobile_number">
             </fg-input>
           </div>
           <div class="col-md-4">
             <fg-input type="text"
                       label="Home Number"
                       placeholder="+94112######"
-                      v-model="user.home_number">
+                      v-model="userData.home_number">
             </fg-input>
           </div>
         </div>
@@ -86,7 +86,7 @@
             <fg-input type="text"
                       label="Home Address"
                       placeholder="Address"
-                      v-model="user.address">
+                      v-model="userData.address">
             </fg-input>
           </div>
         </div>
@@ -105,30 +105,38 @@
 </template>
 <script>
 export default {
+  props:{
+    user: Object,
+  },
   data() {
     return {
-      user: {
-        registration_number: "CL/MSCIT/12/12",
-        university_number: "20121221",
-        center: "ICBT Campus Colombo",
-        program: "MSc in Information Technology (CMU)",
-        batch: "12",
-        title: "Mr",
-        first_name: "Supun",
-        last_name: "Muthu",
-        certificate_name: "Supun Muthutantrige",
-        gender: "Male",
-        dob: "01 Jan 1990",
-        mobile_number: "0765671987",
-        home_number: "0765671987",
-        email: "supun.test@gmail.com",
-        address: "No. 36 De Kretser Pl, Colombo 00400"
-      }
+      userData: this.user,
+      // user: {
+      //   registration_number: "CL/MSCIT/12/12",
+      //   university_number: "20121221",
+      //   center: "ICBT Campus Colombo",
+      //   program: "MSc in Information Technology (CMU)",
+      //   batch: "12",
+      //   title: "Mr",
+      //   first_name: "Supun",
+      //   last_name: "Muthu",
+      //   certificate_name: "Supun Muthutantrige",
+      //   gender: "Male",
+      //   dob: "01 Jan 1990",
+      //   mobile_number: "0765671987",
+      //   home_number: "0765671987",
+      //   email: "supun.test@gmail.com",
+      //   address: "No. 36 De Kretser Pl, Colombo 00400"
+      // }
     };
+  },
+  created() {
+    this.$emit('clicked', this.user)
   },
   methods: {
     updateProfile() {
-      alert("Your data: " + JSON.stringify(this.user));
+      // alert("Your data: " + JSON.stringify(this.user));
+      this.$emit('clicked', this.user)
     }
   }
 };

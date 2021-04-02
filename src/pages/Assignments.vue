@@ -1,6 +1,19 @@
 <template>
   <div>
 
+    <div v-if='successMsgs !== "" '>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+
+          <div class="alert alert-success">
+            <button type="button" aria-hidden="true" class="close">×</button>
+            <span>{{successMsgs}}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Assignments -->
     <div class="row">
       <div class="col-12">
@@ -35,7 +48,7 @@
     <!-- Submission -->
     <card class="card" :title=user.assignment>
       <div style="padding: 25px 50px 50px 50px">
-        <form @submit.prevent>
+        <form>
           <div class="row">
             <div class="col-md-2">
               <h5>Center</h5>
@@ -113,9 +126,11 @@
               <h5>Attachment</h5>
             </div>
             <div class="col-md-4">
-              <fg-input type="file"
-                        v-model="user.home_number">
-              </fg-input>
+              <input
+                type="file"
+                ref="image"
+                :disabled='activeAssignmentIndex === null || activeAssignmentIndex === "" '
+                @change="fileSelected">
             </div>
           </div>
 
@@ -123,20 +138,14 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
               <p-button type="info"
+                        :disabled='activeAssignmentIndex === null || activeAssignmentIndex === "" '
                         round
-                        @click.native.prevent="updateProfile">
+                        @click.native.prevent="uploadFile">
                 Upload
               </p-button>
             </div>
           </div>
 
-          <!--        <div class="text-center">-->
-          <!--          <p-button type="info"-->
-          <!--                    round-->
-          <!--                    @click.native.prevent="updateProfile">-->
-          <!--            Upload-->
-          <!--          </p-button>-->
-          <!--        </div>-->
           <div class="clearfix"></div>
         </form>
       </div>
@@ -146,6 +155,7 @@
 </template>
 <script>
   import { PaperTable } from "@/components";
+  const fb = require('../firebaseConfig.js');
   const tableColumns = ["Id", "Code", "Name", "Issued", "Due", "Status"];
   const tableData1 = [
     {
@@ -180,7 +190,10 @@
     },
     data() {
       return {
+        errorMsgs: "",
+        successMsgs: "",
         activeAssignmentIndex: '',
+        activeAssignment: '',
         type: {
           type: String, // striped | hover
           default: "hover"
@@ -193,7 +206,9 @@
           type: String,
           default: ""
         },
+        file: "",
         user: {
+          university_number: "20121221",
           center: "ICBT Campus Colombo",
           program: "MSc in Information Technology (CMU)",
           batch: "18",
@@ -201,7 +216,7 @@
           assignment: "click a module to load",
           description: "click a module to load",
           date_issued: "click a module to load",
-          date_submission: "click a module to load"
+          date_submission: "click a module to load",
         },
         table1: {
           title: "Assignment Submission",
@@ -217,9 +232,35 @@
       }
     },
     methods: {
+      fileSelected(e){
+        this.file = e.target.files;
+      },
+      uploadFile(){
+        if (this.file && this.file.length > 0) {
+          const file = this.file[0];
+          const imageName = file.name;
+          const path = this.user.university_number + "/" + this.activeAssignment.code + "/" + imageName;
+
+          const storageRef = fb.storage.ref();
+          const fileRef = storageRef.child(path);
+
+          fileRef
+            .put(file)
+            .then(() => {
+              console.log('successfully uploaded');
+              this.successMsgs = 'successfully uploaded the assignment';
+            });
+
+        } else {
+          console.error('no file attached');
+          this.errorMsgs = 'no file attached';
+        }
+
+
+      },
       setActiveEvent(index, item) {
-        console.log('HERE', index, item.code, item.name, item.issued, item.due);
         this.activeAssignmentIndex = index;
+        this.activeAssignment = item;
         this.user.module = item.code + " - " + item.name;
         this.user.assignment = item.name + " - Assignment";
         this.user.description = item.name;

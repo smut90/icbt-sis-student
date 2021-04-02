@@ -4,15 +4,14 @@
       <nav>
         <ul>
           <li>
-            <router-link :to="{path:'/admin'}">Dashboard</router-link>
+            <router-link :to="{path:'/dashboard'}">Home</router-link>
           </li>
         </ul>
       </nav>
       <div class="copyright d-flex flex-wrap">
-        &copy; Coded with
+        &copy; ICBT SIS Student portal with
         <i class="fa fa-heart heart"></i> by
-        <a href="https://github.com/cristijora" target="_blank"> &nbsp; Cristi Jora.</a>&nbsp;
-        Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">&nbsp; Creative Tim.</a>
+        <a href="https://github.com/cristijora" target="_blank"> &nbsp; TSD Group 4</a>&nbsp;
       </div>
     </div>
   </footer>

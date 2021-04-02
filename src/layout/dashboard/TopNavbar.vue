@@ -13,21 +13,25 @@
       </button>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="ti-panel"></i>
-              <p>Stats</p>
-            </a>
-          </li>
           <drop-down class="nav-item"
                      title="5 Notifications"
                      title-classes="nav-link"
                      icon="ti-bell">
-            <a class="dropdown-item" href="#">Notification 1</a>
-            <a class="dropdown-item" href="#">Notification 2</a>
-            <a class="dropdown-item" href="#">Notification 3</a>
-            <a class="dropdown-item" href="#">Notification 4</a>
-            <a class="dropdown-item" href="#">Another notification</a>
+            <router-link :to="{path: '/payments'}">
+              <a class="dropdown-item alert-danger">Settle payment</a>
+            </router-link>
+            <router-link :to="{path: '/course-modules'}">
+              <a class="dropdown-item alert-info">CIS7008 - Lecture slides uploaded</a>
+            </router-link>
+            <router-link :to="{path: '/course-modules'}">
+              <a class="dropdown-item alert-info">CIS7015 - Lecture slides uploaded</a>
+            </router-link>
+            <router-link :to="{path: '/assignments'}">
+              <a class="dropdown-item alert-warning" >CIS7028 - Assignment due</a>
+            </router-link>
+            <router-link :to="{path: '/assignments'}">
+              <a class="dropdown-item alert-warning">CIS7015 - Interim presentation</a>
+            </router-link>
           </drop-down>
           <li class="nav-item">
             <a href="#" class="nav-link">

@@ -1,11 +1,11 @@
 <template>
   <card class="card-user">
     <div slot="image">
-      <img src="@/assets/img/background.jpg" alt="...">
+      <img src="@/assets/img/avatar.jpg" alt="...">
     </div>
     <div>
       <div class="author">
-        <img class="avatar border-white" src="@/assets/img/faces/face-2.jpg" alt="...">
+        <img class="avatar border-white" src="@/assets/img/logo.jpg" alt="...">
         <h4 class="title">{{first_name}} {{last_name}}
           <br>
           <a href="#">
@@ -32,6 +32,11 @@
 </template>
 <script>
 export default {
+  props:{
+    first_name: String,
+    last_name: String,
+    email: String
+  },
   data() {
     return {
       registration_number: "CL/MSCIT/12/12",
@@ -40,13 +45,10 @@ export default {
       program: "MSc in Information Technology (CMU)",
       batch: "12",
       title: "Mr",
-      first_name: "Supun",
-      last_name: "Muthu",
       gender: "Male",
       dob: "01 Jan 1990",
       mobile_number: "0765671987",
       home_number: "0765671987",
-      email: "supun.test@gmail.com",
       details: [
         {
           title: "20121221",
