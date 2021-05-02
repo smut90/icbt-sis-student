@@ -8,6 +8,8 @@ import UserProfile from "@/pages/UserProfile.vue";
 import Assignments from "@/pages/Assignments.vue";
 import Payments from "@/pages/Payments.vue";
 import CourseModule from "@/pages/CourseModules.vue";
+import Module from "@/pages/Module.vue";
+import Chat from "@/pages/Messaging.vue";
 
 const routes = [
   {
@@ -31,6 +33,11 @@ const routes = [
         component: CourseModule
       },
       {
+        path: "module",
+        name: "Class Room",
+        component: Module
+      },
+      {
         path: "assignments",
         name: "assignments",
         component: Assignments
@@ -39,7 +46,12 @@ const routes = [
         path: "payments",
         name: "payments",
         component: Payments
-      }
+      },
+      {
+        path: "chat",
+        name: "Message Room",
+        component: Chat
+      },
     ]
   },
   { path: "*", component: NotFound }

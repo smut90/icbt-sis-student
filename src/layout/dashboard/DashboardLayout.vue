@@ -6,8 +6,10 @@
         <sidebar-link to="/stats" name="Student Profile" icon="ti-user"/>
 
         <sidebar-link to="/course-modules" name="Course Module" icon="ti-view-list-alt"/>
+        <sidebar-link to="/module" name="Class Room" icon="ti-view-list-alt"/>
         <sidebar-link to="/assignments" name="Assignments" icon="ti-map"/>
         <sidebar-link to="/payments" name="Payments" icon="ti-text"/>
+        <sidebar-link to="/chat" name="Message Room" icon="ti-text"/>
       </template>
       <mobile-menu>
         <li class="nav-item">

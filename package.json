@@ -15,9 +15,13 @@
     "chartist": "^0.11.0",
     "es6-promise": "^4.2.4",
     "firebase": "^8.3.2",
+    "talkjs": "^0.14.5",
+    "video.js": "^7.11.8",
     "vue": "^2.6.10",
     "vue-clickaway": "^2.1.0",
     "vue-notifyjs": "^0.3.0",
+    "vue-pdf": "^4.2.0",
+    "vue-pdf-app": "^2.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
